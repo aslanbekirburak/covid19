@@ -1,0 +1,74 @@
+/**
+ *
+ * {{properCase name }}
+ *
+ */
+
+import React from 'react';
+import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
+{{#if wantMessages}}
+import I18n from 'localization';
+{{/if}}
+import { connect } from 'react-redux';
+{{#if wantActionsAndReducer}}
+import { createStructuredSelector } from 'reselect';
+{{/if}}
+import { compose } from 'redux';
+
+{{#if wantSaga}}
+import { useInjectSaga } from 'utils/injectSaga';
+{{/if}}
+{{#if wantActionsAndReducer}}
+import { useInjectReducer } from 'utils/injectReducer';
+import makeSelect{{properCase name}} from './selectors';
+import reducer from './reducer';
+{{/if}}
+{{#if wantSaga}}
+import saga from './saga';
+{{/if}}
+
+export function {{ properCase name }}() {
+  {{#if wantActionsAndReducer}}
+  useInjectReducer({ key: '{{ camelCase name }}', reducer });
+  {{/if}}
+  {{#if wantSaga}}
+  useInjectSaga({ key: '{{ camelCase name }}', saga });
+  {{/if}}
+
+  return (
+    <View>
+      {{#if wantMessages}}
+        <Text>{I18n.t('firstMessage.hello')} {{ properCase name }} Container!</Text>
+      {{else}}
+          <Text>{{ properCase name }} Container!</Text>
+      {{/if}}
+    </View>
+  );
+}
+
+{{ properCase name }}.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+{{#if wantActionsAndReducer}}
+const mapStateToProps = createStructuredSelector({
+  {{ camelCase name }}: makeSelect{{properCase name}}(),
+});
+{{/if}}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+{{#if wantActionsAndReducer}}
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+{{else}}
+const withConnect = connect(null, mapDispatchToProps);
+{{/if}}
+
+export default compose(
+  withConnect,
+)({{ properCase name }});

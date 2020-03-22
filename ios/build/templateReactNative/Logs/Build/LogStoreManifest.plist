@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>AA387F98-268C-4094-886C-2601EB32C488</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>AA387F98-268C-4094-886C-2601EB32C488.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>templateReactNative project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>templateReactNative</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building workspace templateReactNative with scheme templateReactNative and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>606595958.18834603</real>
+			<key>timeStoppedRecording</key>
+			<real>606595959.12646496</real>
+			<key>title</key>
+			<string>Building workspace templateReactNative with scheme templateReactNative and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>AA387F98-268C-4094-886C-2601EB32C488</string>
+		</dict>
+		<key>DB7C693E-6A12-4BCB-94A7-41B2080C3AAA</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>DB7C693E-6A12-4BCB-94A7-41B2080C3AAA.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>templateReactNative project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>templateReactNative</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building workspace templateReactNative with scheme templateReactNative and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>606593850.82201099</real>
+			<key>timeStoppedRecording</key>
+			<real>606593931.46294105</real>
+			<key>title</key>
+			<string>Building workspace templateReactNative with scheme templateReactNative and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>DB7C693E-6A12-4BCB-94A7-41B2080C3AAA</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
