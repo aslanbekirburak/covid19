@@ -3,10 +3,11 @@ import axios from 'axios';
 
 import { View, Text, FlatList } from 'react-native';
 import Flag from '../../flags';
+import countryList from "../../utils/countryCode.json"
 // import { List, ListItem } from 'react-native-elements';
 
-const Germany = "DE"
-const China = "CN"
+// const Germany = "DE"
+// const China = "CN"
 
 class Stats extends React.Component {
     constructor() {
@@ -23,28 +24,37 @@ class Stats extends React.Component {
                 const countries = res.data;
                 this.setState({ countries });
 
-                console.log('------------------------------------');
-                console.log("stateData:", this.state.countries);
-                console.log('------------------------------------');
+                // console.log('------------------------------------');
+                // console.log("stateData:", this.state.countries);
+                // console.log('------------------------------------');
             })
+    }
+
+    countryConverter = (country) => {
+        console.log("counrty",country)
+        let countryCode = countryList.find(el => el.name === country)
+        console.log("countryCode",countryCode && countryCode.code)
+        return countryCode && countryCode.code
     }
 
     renderItem = (item) => {
 
         const i = item.item
 
-        console.log('------------------------------------');
-        console.log("renderLog", item);
-        console.log('------------------------------------');
+        // console.log('------------------------------------');
+        // console.log("renderLog", item);
+        // console.log(countryList,"countryList")
+        // console.log('------------------------------------');
 
-        console.log('------------------------------------');
-        console.log("renderLog", item.item.country);
-        console.log('------------------------------------');
+        // console.log('------------------------------------');
+        // console.log("renderLog", item.item.country);
+        this.countryConverter(i.country)
+        // console.log('------------------------------------');
 
         return (
             <View>
                 <Flag
-                    code={i.country}
+                    code={this.countryConverter(i.country)}
                     size={32}
                 />
                 <Text>{i.country}</Text>
@@ -57,7 +67,7 @@ class Stats extends React.Component {
     }
 
     render() {
-
+        
         return (
             <View>
                 <FlatList
