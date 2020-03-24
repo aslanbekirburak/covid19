@@ -48,7 +48,7 @@ class Stats extends React.Component {
 
         // console.log('------------------------------------');
         // console.log("renderLog", item.item.country);
-        this.countryConverter(i.country)
+        // this.countryConverter(i.country)
         // console.log('------------------------------------');
 
         return (
