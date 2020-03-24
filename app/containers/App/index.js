@@ -29,11 +29,12 @@ const AppNavigator = createStackNavigator(
     defaultNavigationOptions: {
       headerBackTitle: null,
       headerStyle: {
-        height: 60,
+        width: '0%',
+        height: 20,
         paddingTop: 20,
-        backgroundColor: '#0893ce',
+        backgroundColor: '#1b1237',
       },
-      headerTintColor: '#fff',
+      headerTintColor: '#1b1237',
       headerTitleStyle: {
         fontWeight: 'bold',
       },

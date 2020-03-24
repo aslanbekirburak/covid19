@@ -1,13 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 
-import { View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import Flag from '../../flags';
 import countryList from "../../utils/countryCode.json"
 // import { List, ListItem } from 'react-native-elements';
 
 // const Germany = "DE"
 // const China = "CN"
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 8,
+        marginBottom: 8
+    },
+    text:{
+        color: '#FFF6FF'
+    }
+});
 
 class Stats extends React.Component {
     constructor() {
@@ -40,15 +50,15 @@ class Stats extends React.Component {
         const i = item.item
 
         return (
-            <View>
+            <View style={styles.container}>
                 <Flag
                     code={this.countryConverter(i.country)}
                     size={32}
                 />
-                <Text>{i.country}</Text>
-                <Text>cases : {i.cases}</Text>
-                <Text>deaths: {i.deaths}</Text>
-                <Text>recovered: {i.recovered}</Text>
+                <Text style={styles.text}>{i.country}</Text>
+                <Text style={styles.text}>cases : {i.cases}</Text>
+                <Text style={styles.text}>deaths: {i.deaths}</Text>
+                <Text style={styles.text}>recovered: {i.recovered}</Text>
             </View>
         )
 
