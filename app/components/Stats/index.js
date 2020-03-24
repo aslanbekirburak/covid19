@@ -18,16 +18,17 @@ class Stats extends React.Component {
     }
     // make the GET request to fetch data from the URL then using promise function to handle response.
     componentDidMount() {
-
+        setInterval(()=>{
         axios.get(`https://corona.lmao.ninja/countries`)
             .then(res => {
                 const countries = res.data;
                 this.setState({ countries });
 
-                // console.log('------------------------------------');
-                // console.log("stateData:", this.state.countries);
-                // console.log('------------------------------------');
+                console.log('------------------------------------');
+                console.log("stateData:", this.state.countries);
+                console.log('------------------------------------');
             })
+        },5000)
     }
 
     countryConverter = (country) => {
