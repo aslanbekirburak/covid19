@@ -16,8 +16,8 @@ class Total extends React.Component {
     }
     // make the GET request to fetch data from the URL then using promise function to handle response.
     componentDidMount() {
-
-        axios.get(`https://corona.lmao.ninja/all`)
+        setInterval(()=>
+        {axios.get(`https://corona.lmao.ninja/all`)
             .then(res => {
                 const total = res.data;
                 this.setState({ total });
@@ -26,6 +26,8 @@ class Total extends React.Component {
                 console.log("totalData:", this.state.total);
                 console.log('------------------------------------');
             })
+        },5000
+        )
     }
 
     render() {

@@ -31,25 +31,13 @@ class Stats extends React.Component {
     }
 
     countryConverter = (country) => {
-        console.log("counrty",country)
         let countryCode = countryList.find(el => el.name === country)
-        console.log("countryCode",countryCode && countryCode.code)
         return countryCode && countryCode.code
     }
 
     renderItem = (item) => {
 
         const i = item.item
-
-        // console.log('------------------------------------');
-        // console.log("renderLog", item);
-        // console.log(countryList,"countryList")
-        // console.log('------------------------------------');
-
-        // console.log('------------------------------------');
-        // console.log("renderLog", item.item.country);
-        // this.countryConverter(i.country)
-        // console.log('------------------------------------');
 
         return (
             <View>
