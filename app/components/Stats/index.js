@@ -2,20 +2,61 @@ import React from 'react';
 import axios from 'axios';
 
 import { StyleSheet, View, Text, FlatList } from 'react-native';
-import Flag from '../../flags';
+import Flag from 'react-native-flags';
 import countryList from "../../utils/countryCode.json"
-// import { List, ListItem } from 'react-native-elements';
-
-// const Germany = "DE"
-// const China = "CN"
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        borderRadius: 10,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        width: '94%',
+        flexDirection: 'row',
+        marginLeft: '3%',
+        alignItems: 'center',
         marginTop: 8,
-        marginBottom: 8
+        marginBottom: 8,
     },
-    text:{
-        color: '#FFF6FF'
+    text: {
+        color: '#FFF6FF',
+        fontSize: 12,
+        marginTop: 2,
+        marginBottom: 2,
+        textAlign: 'center'
+    },
+    textL: {
+        color: '#FFF6FF',
+        fontSize: 24,
+        marginTop: 2,
+        marginBottom: 2,
+        textAlign: 'center'
+    },
+    textCountry: {
+        color: '#FFF6FF',
+        fontSize: 14,
+        marginTop: -4,
+        textAlign: 'center',
+        fontWeight: "900"
+    },
+    core: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    coreIn: {
+        width: '33%',
+        textAlign: 'center',
+    },
+    flag: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '20%',
+        height: 80,
+    },
+    content: {
+        // alignItems: 'center',
+        justifyContent: 'center',
+        width: '80%',
+        height: 80
     }
 });
 
@@ -28,17 +69,24 @@ class Stats extends React.Component {
     }
     // make the GET request to fetch data from the URL then using promise function to handle response.
     componentDidMount() {
-        setInterval(()=>{
-        axios.get(`https://corona.lmao.ninja/countries`)
-            .then(res => {
-                const countries = res.data;
-                this.setState({ countries });
+        let fetchData = () => {
+            axios.get(`https://corona.lmao.ninja/countries`)
+                .then(res => {
+                    const countries = res.data;
+                    this.setState({ countries });
 
-                console.log('------------------------------------');
-                console.log("stateData:", this.state.countries);
-                console.log('------------------------------------');
-            })
-        },5000)
+                    // console.log('------------------------------------');
+                    // console.log("totalData:", this.state.total);
+                    // console.log('------------------------------------');
+                })
+        }
+        fetchData()
+        this.update = setInterval(fetchData, 600000)
+
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.update)
     }
 
     countryConverter = (country) => {
@@ -52,21 +100,34 @@ class Stats extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Flag
-                    code={this.countryConverter(i.country)}
-                    size={32}
-                />
-                <Text style={styles.text}>{i.country}</Text>
-                <Text style={styles.text}>cases : {i.cases}</Text>
-                <Text style={styles.text}>deaths: {i.deaths}</Text>
-                <Text style={styles.text}>recovered: {i.recovered}</Text>
+                <View style={styles.flag}>
+                    <Flag code={this.countryConverter(i.country)} size={48} />
+                    <Text style={styles.textCountry}>{i.country}</Text>
+                </View>
+
+                <View style={styles.content}>
+                    <View style={styles.core}>
+                        <View style={styles.coreIn}>
+                            <Text style={styles.textL}>{i.cases.toLocaleString()}</Text>
+                            <Text style={styles.text}>Cases</Text>
+                        </View>
+                        <View style={styles.coreIn}>
+                            <Text style={styles.textL}>{i.deaths.toLocaleString()}</Text>
+                            <Text style={styles.text}>Deaths</Text>
+                        </View>
+                        <View style={styles.coreIn}>
+                            <Text style={styles.textL}>{i.recovered.toLocaleString()}</Text>
+                            <Text style={styles.text}>Recovered</Text>
+                        </View>
+                    </View>
+                </View>
             </View>
         )
 
     }
 
     render() {
-        
+
         return (
             <View>
                 <FlatList

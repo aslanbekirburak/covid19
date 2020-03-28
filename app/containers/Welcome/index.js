@@ -19,6 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 
 import LinearGradient from 'react-native-linear-gradient';
+import Header from '../../components/Header'
 import Stats from '../../components/Stats'
 import Total from '../../components/Total'
 
@@ -31,7 +32,7 @@ var styles = StyleSheet.create({
     resizeMode: 'cover', // or 'stretch',
     opacity: 0.2
   },
-  loginForm: {
+  Wrap: {
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -47,12 +48,18 @@ export function Welcome() {
 
   return (
     // #211042
-    <LinearGradient colors={['#211042', '#211042', '#211042', '#341959', '#62326e', '#844176']} style={styles.container}>
+    <LinearGradient start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}} colors={['#01081d', '#211042', '#211042', '#331042','#481654', '#531c61']} style={styles.container}>
       <ImageBackground source={require('../../assets/corona.jpeg')} style={styles.backgroundImage}></ImageBackground>
-        <View style={styles.loginForm}>
+        <View style={styles.Wrap}>
+        <View>
+            {/* <Text>{I18n.t('firstMessage.hello')} Welcome Container!</Text> */}
+            <Header />
+          </View>
           <View>
             {/* <Text>{I18n.t('firstMessage.hello')} Welcome Container!</Text> */}
             <Total />
+          </View>
+          <View>
             <Stats />
           </View>
         </View>

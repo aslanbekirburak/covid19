@@ -1,46 +1,64 @@
 import React from 'react';
 import axios from 'axios';
 
-import { Dimensions, StyleSheet, View, Text } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-
-// import Moment from 'react-moment';
-// Moment.globalFormat = 'D MMM YYYY';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import countryList from "../../utils/countryCode.json"
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
+        width: '94%',
+        marginLeft: '3%',
         height: 120,
-        marginTop: 20,
-        marginBottom: 30,
-    },
-    stats:{
-        width: Dimensions.get('window').width,
-        flex: 1,
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-        marginTop: 20,
-    },
-    stat:{
-        width: '33%',
-    },
-    textTitle: {
-        color: '#FFF',
-        fontSize: 28,
-        marginBottom: 16,
-        textAlign: 'center'
+        marginTop: 10,
+        flexDirection: 'row'
     },
     text: {
-        color: '#FFF',
-        fontSize: 14,
-        marginBottom: 4,
+        color: '#FFF6FF',
+        fontSize: 12,
+        marginTop: 2,
+        marginBottom: 2,
         textAlign: 'center'
     },
-    textN: {
-        color: '#FFF',
-        fontSize: 24,
-        marginBottom: 4,
-        textAlign: 'center'
+    textL: {
+        color: '#FFF6FF',
+        fontSize: 22,
+        marginTop: 2,
+        marginBottom: 2,
+        textAlign: 'center',
+        fontWeight: '900'
+    },
+    logo: {
+        width: 70,
+        height: 70,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textCountry: {
+        color: '#FFF6FF',
+        fontSize: 16,
+        marginTop: -4,
+        textAlign: 'center',
+        fontWeight: "900"
+    },
+    core: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    coreIn: {
+        width: '33%',
+        textAlign: 'center',
+    },
+    flag: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '20%',
+        height: 120,
+    },
+    content: {
+        // alignItems: 'center',
+        justifyContent: 'center',
+        width: '80%',
+        height: 120,
     }
 });
 
@@ -53,7 +71,7 @@ class Total extends React.Component {
     }
     // make the GET request to fetch data from the URL then using promise function to handle response.
     componentDidMount() {
-        setInterval(() => {
+        let fetchData = () => {
             axios.get(`https://corona.lmao.ninja/all`)
                 .then(res => {
                     const total = res.data;
@@ -63,30 +81,50 @@ class Total extends React.Component {
                     // console.log("totalData:", this.state.total);
                     // console.log('------------------------------------');
                 })
-        }, 5000
-        )
+        }
+        fetchData()
+        this.update = setInterval(fetchData, 600000)
+
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.update)
+    }
+
+    countryConverter = (country) => {
+        let countryCode = countryList.find(el => el.name === country)
+        return countryCode && countryCode.code
     }
 
     render() {
 
+        console.log('------------------------------------');
+        console.log("data", this.state.total.cases);
+        console.log('------------------------------------');
+
         return (
             <View style={styles.container}>
-                <Text style={styles.textTitle}>Worldwide Coronavirus</Text>
-                <View style={styles.stats}>
-                    <View style={styles.stat}>
-                        <Text style={styles.text}>CASES</Text>
-                        <Text style={styles.textN}>{this.state.total.cases}</Text>
-                    </View>
-                    <View style={styles.stat}>
-                        <Text style={styles.text}>DEATHS</Text>
-                        <Text style={styles.textN}>{this.state.total.deaths}</Text>
-                    </View>
-                    <View style={styles.stat}>
-                        <Text style={styles.text}>RECOVERED</Text>
-                        <Text style={styles.textN}>{this.state.total.recovered}</Text>
+                <View style={styles.flag}>
+                    <Image style={styles.logo} source={require('../../assets/earth.png')}></Image>
+                    <Text style={styles.textCountry}>WORLD</Text>
+                </View>
+
+                <View style={styles.content}>
+                    <View style={styles.core}>
+                        <View style={styles.coreIn}>
+                            <Text style={styles.textL}>{this.state.total.cases}</Text>
+                            <Text style={styles.text}>Cases</Text>
+                        </View>
+                        <View style={styles.coreIn}>
+                            <Text style={styles.textL}>{this.state.total.deaths}</Text>
+                            <Text style={styles.text}>Deaths</Text>
+                        </View>
+                        <View style={styles.coreIn}>
+                            <Text style={styles.textL}>{this.state.total.recovered}</Text>
+                            <Text style={styles.text}>Recovered</Text>
+                        </View>
                     </View>
                 </View>
-                {/* <Text><Moment unix>{1370001284}</Moment></Text> */}
             </View>
         )
     }
